@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatAppFirebase">
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".MessageActivity" />
+        <activity android:name=".RegisterActivity" android:parentActivityName=".StartActivity"></activity>
+        <activity android:name=".MessageActivity" android:parentActivityName=".StartActivity"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".LogInActivity" />
 
