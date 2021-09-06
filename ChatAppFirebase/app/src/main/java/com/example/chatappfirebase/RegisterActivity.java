@@ -1,10 +1,10 @@
 package com.example.chatappfirebase;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toolbar;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -19,9 +19,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         toolbar = findViewById(R.id.toolbarreg);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setTitle("Register");
-//        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         et_username = findViewById(R.id.reg_username);
         et_email = findViewById(R.id.reg_email);
