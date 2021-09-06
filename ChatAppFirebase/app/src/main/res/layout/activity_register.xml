@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:id="@+id/register_Account_btn"
+                android:id="@+id/register"
                 android:text="Register"
                 android:background="@android:color/holo_red_light"
                 android:textColor="@android:color/white"/>
