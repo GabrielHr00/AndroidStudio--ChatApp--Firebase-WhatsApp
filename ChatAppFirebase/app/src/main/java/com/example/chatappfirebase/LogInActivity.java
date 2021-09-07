@@ -71,6 +71,7 @@ public class LogInActivity extends AppCompatActivity {
                     finish();
                     Toast.makeText(LogInActivity.this, "Logged In successfully!", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
