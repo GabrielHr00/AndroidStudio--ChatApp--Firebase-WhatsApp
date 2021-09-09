@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.chatappfirebase.Fragments.ChatsFragment;
 import com.example.chatappfirebase.Fragments.ProfileFragment;
@@ -27,9 +28,14 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mauth;
     Toolbar toolbar;
+
+    CircleImageView imageView;
+    TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +43,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mauth = FirebaseAuth.getInstance();
+        imageView = findViewById(R.id.profile_image);
+        username = findViewById(R.id.username);
+
+        //Toolbar
         toolbar = findViewById(R.id.toolbarmain);
         //setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TabLayout tablayout = findViewById(R.id.tablayout);
-        final ViewPager2 pa = findViewById(R.id.viewPager);
-
+        ViewPager2 pager2 = findViewById(R.id.viewPager);
         ViewStateAdapter fragmentAdapter = new ViewStateAdapter(getSupportFragmentManager(), getLifecycle());
 
         fragmentAdapter.addFragment(new ChatsFragment(), "Chats");
         fragmentAdapter.addFragment(new UsersFragment(), "Users");
         fragmentAdapter.addFragment(new ProfileFragment(), "Profile");
 
-        pa.setAdapter(fragmentAdapter);
+        pager2.setAdapter(fragmentAdapter);
+
+        // Tab Layout
+        TabLayout tablayout = findViewById(R.id.tablayout);
+        tablayout.addTab(tablayout.newTab().setText("Chats"));
+        tablayout.addTab(tablayout.newTab().setText("Users"));
+        tablayout.addTab(tablayout.newTab().setText("Profile"));
+
         tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                pa.setCurrentItem(tab.getPosition());
+                pager2.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -69,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        pa.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        // change tab when swiping
+        pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 tablayout.selectTab(tablayout.getTabAt(position));
             }
         });
-        //tablayout.setupWithViewPager(viewPager);
     }
 
     private class ViewStateAdapter extends FragmentStateAdapter {
