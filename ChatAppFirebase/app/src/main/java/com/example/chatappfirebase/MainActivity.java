@@ -107,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
                 username.setText(users.getUsername());
 
-                //if(users.getImageURL().equals("default")){
+                if(users.getImageURL().equals("default")){
                     imageView.setImageResource(R.drawable.user);
-//                }
-//                else{
-//                    Glide.with(getApplicationContext()).load(users.getImageURL()).into(imageView);
-//                }
+                }
+                else{
+                    Glide.with(getApplicationContext()).load(users.getImageURL()).into(imageView);
+                }
             }
 
             @Override
