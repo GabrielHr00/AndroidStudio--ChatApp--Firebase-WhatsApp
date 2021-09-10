@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31D199"
+    android:background="#5F5F5F"
     tools:context=".StartActivity">
 
     <Button
         android:id="@+id/login"
-        android:layout_width="104dp"
-        android:layout_height="62dp"
-        android:backgroundTint="#1C5670"
+        android:layout_width="120dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#8DA07A"
         android:text="Log In"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,25 +22,25 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="136dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#1C5670"
+        android:layout_width="120dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#8DA07A"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message"
+        android:text="MessageApp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="#0C0C0C"
+        android:textColor="#F8F5F5"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
