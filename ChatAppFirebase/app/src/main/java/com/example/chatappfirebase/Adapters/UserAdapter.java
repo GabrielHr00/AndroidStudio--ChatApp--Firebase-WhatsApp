@@ -70,7 +70,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
         return usersList.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder {
+    class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView username;
         CircleImageView imageView;
 
@@ -79,6 +79,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
             username = itemView.findViewById(R.id.username_userfrag);
             imageView = itemView.findViewById(R.id.image_user_userfrag);
+            itemView.setOnClickListener((View.OnClickListener) this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            Users users = usersList.get(getAdapterPosition());
+
+            friendId = users.getId();
+
+            Intent intent = new Intent(context, MessageActivity.class);
+            intent.putExtra("friendid", friendId);
+            context.startActivity(intent);
+
         }
     }
 }
