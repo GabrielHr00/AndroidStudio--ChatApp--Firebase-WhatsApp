@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.chatappfirebase.Adapters.MessageAdapter;
+import com.example.chatappfirebase.Model.Chats;
 import com.example.chatappfirebase.Model.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,6 +43,8 @@ public class MessageActivity extends AppCompatActivity {
     EditText et_message;
     Button send;
 
+    List<Chats> chatsList;
+    MessageAdapter adapter;
     RecyclerView recyclerView;
 
     @Override
@@ -81,6 +87,9 @@ public class MessageActivity extends AppCompatActivity {
                 } else {
                     Glide.with(getApplicationContext()).load(users.getImageURL()).into(circleImageView);
                 }
+
+                readMessages(myid, friendid, users.getImageURL());
+
             }
 
             @Override
@@ -88,6 +97,7 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+
 
         // EditText message
         et_message = findViewById(R.id.edit_message_text);
@@ -124,6 +134,14 @@ public class MessageActivity extends AppCompatActivity {
             sendMessage(myid, friendid, message);
             et_message.setText(" ");
         });
+
+    }
+
+    private void readMessages(String myid, String friendid, String imageURL) {
+            chatsList = new ArrayList<>();
+
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
+
     }
 
     private void sendMessage(final String myid, final String friendid, final String message) {
