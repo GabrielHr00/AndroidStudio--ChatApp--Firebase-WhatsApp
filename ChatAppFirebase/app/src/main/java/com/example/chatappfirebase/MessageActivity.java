@@ -44,7 +44,7 @@ public class MessageActivity extends AppCompatActivity {
     Button send;
 
     List<Chats> chatsList;
-    MessageAdapter adapter;
+    MessageAdapter messageAdapter;
     RecyclerView recyclerView;
 
     @Override
@@ -138,10 +138,33 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void readMessages(String myid, String friendid, String imageURL) {
-            chatsList = new ArrayList<>();
+        chatsList = new ArrayList<>();
 
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
 
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chatsList.clear();
+
+                for (DataSnapshot ds: snapshot.getChildren()) {
+                    Chats chats = ds.getValue(Chats.class);
+
+                    if (chats.getSender().equals(myid) && chats.getReciever().equals(friendid) ||
+                            chats.getSender().equals(friendid) && chats.getReciever().equals(myid)) {
+                        chatsList.add(chats);
+                    }
+
+                    messageAdapter = new MessageAdapter(MessageActivity.this, chatsList, imageURL);
+                    recyclerView.setAdapter(messageAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void sendMessage(final String myid, final String friendid, final String message) {
